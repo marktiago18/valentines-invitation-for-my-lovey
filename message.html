@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Photo's & Message</title>
+    <link rel="stylesheet" href="css/message.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Yatra+One&display=swap" rel="stylesheet">
+  </head>
+  <body>
+
+    <div class="container">
+
+      <div id="thankyou"><b>Yeheeeey 🤩</b></div>
+
+      <div id="scroll-container">
+        <div id="happy-valentines-day"><b>Happy Valentine's Day lovey 😘</b></div>
+      </div>
+
+      <div class="image-and-book">
+
+        <div class="photo-stack">
+          <div class="photo">
+              <img src="pictures/pic-1.jpeg" alt="Photo 1">
+          </div>
+          <div class="photo">
+              <img src="pictures/pic-2.jpeg" alt="Photo 2">
+          </div>
+          <div class="photo">
+              <img src="pictures/pic-3.jpeg" alt="Photo 3">
+          </div>
+          <div class="photo">
+              <img src="pictures/pic-4.jpeg" alt="Photo 4">
+          </div>
+          <div class="photo">
+              <img src="pictures/pic-5.jpeg" alt="Photo 5">
+          </div>
+          <div class="photo">
+              <img src="pictures/pic-6.jpeg" alt="Photo 6">
+          </div>
+          <div class="photo">
+              <img src="pictures/pic-7.jpeg" alt="Photo 7">
+          </div>
+          <div class="photo">
+              <img src="pictures/pic-8.jpeg" alt="Photo 8">
+          </div>
+          <div class="photo">
+            <img src="pictures/pic-9.jpeg" alt="Photo 9">
+          </div>
+          <div class="photo">
+            <img src="pictures/pic-10.jpeg" alt="Photo 10">
+          </div>
+          <div class="photo">
+            <img src="pictures/pic-11.jpeg" alt="Photo 11">
+          </div>
+          <div class="photo">
+            <img src="pictures/pic-12.jpeg" alt="Photo 12">
+          </div>
+          <div class="photo">
+            <img src="pictures/pic-13.jpeg" alt="Photo 13">
+          </div>
+          <div class="photo">
+            <img src="pictures/pic-14.jpeg" alt="Photo 14">
+          </div>
+      </div>
+
+      <img id="rizz" src="love.gif" alt="yeeey!" class="responsive" />
+
+      <div class="book">
+          <p class="book-content">"You're the peanut butter to my jelly, the sprinkles on my cupcake, and the best part of my every day. <strong>I love you</strong>, my lovey! 💖✨"</p>
+        <div class="cover">
+            <p>Hover Me</p>
+        </div>
+       </div>
+
+      </div>
+      
+      <audio controls autoplay loop style="display: none;">
+      <source src="blue.mp3" type="audio/mpeg" />Your browser does not support the audio element.
+      </audio>
+      <!-- <audio id="bg-music" src="blue.mp3" loop></audio> -->
+
+      <h1>Don't go yet! There's more 😉</h1>
+
+      <button class="button" onclick="location.href='date.html'">Click meeeh!</button>
+    
+    </div>
+
+    <script>
+      const photos = document.querySelectorAll('.photo');
+      let activePhoto = null;
+      let startX = 0, startY = 0;
+      let currentX = 0, currentY = 0;
+      let isDragging = false;
+      const photoPositions = new Map();  // Store original positions
+
+      // Function to assign random rotation and store positions
+      function setInitialPositions() {
+          photos.forEach((photo, index) => {
+              const randomRotation = Math.floor(Math.random() * 10 - 5); // Random rotation between -5deg and +5deg
+              const randomX = Math.floor(Math.random() * 40 - 20); // Random translation between -20px and +20px
+              const randomY = Math.floor(Math.random() * 40 - 20); // Random translation between -20px and +20px
+              photo.style.transform = `translate(${randomX}px, ${randomY}px) rotate(${randomRotation}deg)`;
+              photo.style.zIndex = index + 1; // Stack order
+              
+              // Store original position
+              const rect = photo.getBoundingClientRect();
+              photoPositions.set(photo, { x: rect.left, y: rect.top, rotation: randomRotation, translateX: randomX, translateY: randomY });
+          });
+      }
+
+      setInitialPositions();
+
+      // Handle mouse down (start dragging)
+      photos.forEach(photo => {
+          photo.addEventListener('mousedown', (e) => {
+              isDragging = true;
+              activePhoto = photo;
+
+              // Bring clicked photo to front
+              photos.forEach(p => p.style.zIndex = "1");
+              photo.style.zIndex = "10";
+
+              // Capture initial mouse position
+              startX = e.clientX;
+              startY = e.clientY;
+
+              // Get current position of photo
+              const rect = photo.getBoundingClientRect();
+              currentX = rect.left;
+              currentY = rect.top;
+
+              // Disable transitions for smoother movement
+              photo.style.transition = "none";
+          });
+      });
+
+      // Handle mouse move (dragging)
+      document.addEventListener('mousemove', (e) => {
+          if (!isDragging || !activePhoto) return;
+
+          // Calculate new position
+          const deltaX = e.clientX - startX;
+          const deltaY = e.clientY - startY;
+          const newX = currentX + deltaX;
+          const newY = currentY + deltaY;
+
+          // Move the photo smoothly
+          requestAnimationFrame(() => {
+              activePhoto.style.transform = `translate(${newX - photoPositions.get(activePhoto).x + photoPositions.get(activePhoto).translateX}px, ${newY - photoPositions.get(activePhoto).y + photoPositions.get(activePhoto).translateY}px) scale(1.05) rotate(2deg)`;
+              activePhoto.style.boxShadow = "10px 20px 30px rgba(0, 0, 0, 0.5)";
+          });
+      });
+
+      // Handle mouse up (release)
+      document.addEventListener('mouseup', () => {
+          if (!activePhoto) return;
+          isDragging = false;
+
+          // Snap back to original position
+          const originalPos = photoPositions.get(activePhoto);
+          requestAnimationFrame(() => {
+              activePhoto.style.transition = "transform 0.5s ease-out";
+              activePhoto.style.transform = `translate(${originalPos.translateX}px, ${originalPos.translateY}px) rotate(${originalPos.rotation}deg)`;
+              activePhoto.style.boxShadow = "5px 10px 15px rgba(0, 0, 0, 0.3)";
+          });
+
+          activePhoto = null;
+      });
+    </script>
+  </body>
+</html>

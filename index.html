@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Valentine's Invitation</title>
+    <link rel="stylesheet" href="css/index.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Yatra+One&display=swap" rel="stylesheet">
+  </head>
+  <body>
+    <div class="container">
+
+      <div id="intro-text"><b>Hi lovey!</b></div>
+
+      <img src="cat.gif" alt="cat asking question" class="responsive" />
+    
+      <div id="valentineQuestion"><b>Will you be my Valentine?</b></div>
+
+      <div class="button-container">
+        <button class="answerButton" onclick="location.href='message.html'">Yes</button>
+        <button class="answerButton" id="noButton">No</button>
+      </div>
+
+    </div>
+    <script>
+    document.getElementById("noButton").addEventListener("click", function () {
+      var yesButton = document.querySelector(
+        'button[onclick*="message.html"]'
+      );
+      var currentFontSize = parseInt(
+        window.getComputedStyle(yesButton).fontSize
+      );
+      yesButton.style.fontSize = currentFontSize + 20 + "px";
+    });
+    </script>
+  </body>
+</html>

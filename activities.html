@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Activities</title>
+    <link rel="stylesheet" href="css/activities.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Yatra+One&display=swap" rel="stylesheet">
+  </head>
+  <body>
+    <div class="container">
+      <div id="activityquestion"><b>What are we doing after?</b></div>
+      <div class="activities-selection">
+        <div class="activity-item">
+          <img src="activities/cuddles.jpg" alt="cuddles" />
+          <label>
+            <input type="checkbox" name="activities" value="cuddles" class="activity-checkbox" />
+            cuddles
+          </label>
+        </div>
+        <div class="activity-item">
+          <img src="activities/mobile-legends.jpg" alt="mobile legends" />
+          <label>
+            <input type="checkbox" name="activities" value="ml" class="activity-checkbox" />
+            mobile legends
+          </label>
+        </div>
+        <div class="activity-item">
+          <img src="activities/cinema.jpeg" alt="cinema" />
+          <label>
+            <input type="checkbox" name="activities" value="cinema" class="activity-checkbox" />
+            cinema
+          </label>
+        </div>
+        <div class="activity-item">
+          <img src="activities/board-games.png" alt="board games" />
+          <label>
+            <input type="checkbox" name="activities" value="board games" class="activity-checkbox" />
+            board games
+          </label>
+        </div>
+        <div class="activity-item">
+          <img src="activities/badminton.jpg" alt="badminton" />
+          <label>
+            <input type="checkbox" name="activities" value="badminton" class="activity-checkbox" />
+            badminton
+          </label>
+        </div>
+        <div class="activity-item">
+          <img src="activities/camping.jpg" alt="camping.jpeg" />
+          <label>
+            <input type="checkbox" name="activities" value="camping.jpeg" class="activity-checkbox" />
+            camping
+          </label>
+        </div>
+      </div>
+      <button class="button" id="proceedButton" disabled>Last, but not the least -></button>
+    </div>
+
+    <script>
+      // Get all checkboxes and the button
+      const checkboxes = document.querySelectorAll('.activity-checkbox');
+      const proceedButton = document.getElementById('proceedButton');
+
+      // Function to check if at least one checkbox is checked
+      function toggleButtonState() {
+        // Check if at least one checkbox is checked
+        const isChecked = Array.from(checkboxes).some(checkbox => checkbox.checked);
+
+        // Enable the button if at least one checkbox is checked, otherwise keep it disabled
+        proceedButton.disabled = !isChecked;
+      }
+
+      // Handle the button click event
+      function handleButtonClick(event) {
+        // If no checkbox is selected, show an alert
+        const isChecked = Array.from(checkboxes).some(checkbox => checkbox.checked);
+        if (!isChecked) {
+          alert('Please select at least one activity before proceeding!');
+          event.preventDefault(); // Prevent form submission
+        } else {
+          // Proceed to the next page if at least one checkbox is checked
+          window.location.href = 'flowers.html';
+        }
+      }
+
+      // Add event listeners to each checkbox to update button state
+      checkboxes.forEach(checkbox => {
+        checkbox.addEventListener('change', toggleButtonState);
+      });
+
+      // Add event listener to the button to handle click event
+      proceedButton.addEventListener('click', handleButtonClick);
+
+      // Function to initialize button state after page reload
+      function initializeButtonState() {
+        // Initially check if any checkbox is checked
+        toggleButtonState();
+      }
+
+      // Run the initialization function after the page loads
+      window.addEventListener('load', initializeButtonState);
+    </script>
+  </body>
+</html>

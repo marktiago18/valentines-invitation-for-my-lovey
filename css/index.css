@@ -1,0 +1,71 @@
+:root {
+  --bg-color: #fcf4dd;
+  --text-color: #fb6f92;
+  --font-family-main: "Yatra One", serif;
+}
+
+* {
+  margin: 0;
+  box-sizing: border-box;
+  padding: 0;
+}
+
+body {
+  text-align: center;
+  font-family: var(--font-family-main);
+  background: var(--bg-color);
+  color: var(--text-color);
+}
+
+img {
+  height: 400px;
+  width: auto;
+  padding: 10px;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 30px;
+  min-height: 100vh;
+}
+
+#intro-text {
+  font-size: 100px;
+  text-shadow: 
+    1px 1px 0px #000, 
+    2px 2px 0px #000, 
+    3px 3px 0px #000, 
+    4px 4px 0px #000, 
+    5px 5px 0px #000; /* Adjust the values as needed */
+}
+
+#valentineQuestion {
+  font-size: 50px;
+}
+
+
+.answerButton {
+  padding: 10px 20px;
+  font-size: 18px;
+  cursor: pointer;
+  margin: 10px;
+  font-family: var(--font-family-main);
+  font-weight: bold;
+  margin-bottom: 20px;
+  background-color: #ffe3e1;
+  color: black;
+  border-radius: 12px;
+  border: 2px solid #ffe3e1;
+  box-shadow: 1px 1px 2px #ff9494, 2px 2px 2px #ff9494, 3px 3px 2px #ff9494, 4px 4px 2px #ff9494, 5px 5px 2px #ff9494;
+  transition: 0.3s;
+}
+
+.answerButton:hover {
+  background-color: #ff9494;
+  color: white;
+  border: 2px solid #ff9494;
+  box-shadow: 1px 1px 2px #000000, 2px 2px 2px #000000, 3px 3px 2px #000000, 4px 4px 2px #000000, 5px 5px 2px #000000;
+}

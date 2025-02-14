@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Yatra+One&display=swap" rel="stylesheet">
+    <title>Availability?</title>
+    <link rel="stylesheet" href="css/date.css" />
+  </head>
+  <body>
+    <div class="container">
+    <h1 title="choose a date">Are you free on ...</h1>
+    <form class="form-group">
+      <label>Which day: (select a date)</label>
+      <div>
+        <input type="date" id="dateInput" />
+        <button class="button" type="submit" id="submitButton" formaction="food.html">
+          Submit
+        </button>
+      </div>
+    </form>
+    </div>
+    <script>
+      document.getElementById("submitButton").addEventListener("click", function(event) {
+        var dateInput = document.getElementById("dateInput").value;
+        if (!dateInput) {
+          alert("Please select a date before submitting.");
+          event.preventDefault(); // Prevent form submission
+        }
+      });
+    </script>
+  </body>
+</html>
