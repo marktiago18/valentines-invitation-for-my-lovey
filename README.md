@@ -2,7 +2,9 @@
 
 This project is a simple HTML and CSS webpage that displays a Valentine's Day invitation with a cute cat GIF and interactive buttons.
 
-** Responsive on devices is still ongoing.
+## Responsiveness
+
+The website is currently in the process of being made fully responsive across all device sizes. At the moment, it has been optimized for larger screens, but adjustments for smaller devices (e.g., mobile, tablets) are still ongoing.
 
 ## Table of Contents
 
