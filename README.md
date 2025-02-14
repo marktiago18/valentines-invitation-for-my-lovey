@@ -30,13 +30,13 @@ You can view a live demo of the project [here](#).
 1. Clone the repository:
 
     ```bash
-    git clone https://github.com/your-username/valentines-invitation.git
+    git clone https://github.com/marktiago18/valentines-invitation-for-my-lovey.git
     ```
 
 2. Navigate to the project directory:
 
     ```bash
-    cd valentines-invitation
+    cd valentines-invitation-for-my-lovey
     ```
 
 ## Usage
