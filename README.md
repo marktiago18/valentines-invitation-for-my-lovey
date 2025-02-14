@@ -41,7 +41,7 @@ You can view a live demo of the project [here](#).
 
 ## Usage
 
-1. Open the index.html file in your web browser to view the invitation.
+1. Open the index.html file in your web browser to view the web page.
 
 2. To customize the invitation, edit the HTML and CSS files located in the directory.
 
