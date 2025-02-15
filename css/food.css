@@ -46,6 +46,7 @@ body {
   justify-content: center;
   gap: 10px;
 }
+
 .food-item img {
   height: 200px;
   width: 200px;
@@ -54,9 +55,11 @@ body {
   object-fit: cover;
   padding: 5px;
 }
+
 .food-item label {
   display: block;
 }
+
 .button {
   padding: 10px 20px;
   font-size: 18px;
@@ -80,3 +83,47 @@ body {
   box-shadow: 1px 1px 2px #000000, 2px 2px 2px #000000, 3px 3px 2px #000000, 4px 4px 2px #000000, 5px 5px 2px #000000;
 }
 
+/* Media queries for responsiveness */
+@media (max-width: 768px) {
+  #foodquestion {
+    font-size: 30px;
+  }
+
+  .food-selection {
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(4, 1fr);
+    gap: 15px;
+  }
+
+  .food-item img {
+    height: 150px;
+    width: 150px;
+  }
+
+  .button {
+    padding: 8px 16px;
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  #foodquestion {
+    font-size: 30px;
+  }
+
+  .food-selection {
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(4, 1fr);
+    gap: 0px;
+  }
+
+  .food-item img {
+    height: 100px;
+    width: 100px;
+  }
+
+  .button {
+    padding: 6px 12px;
+    font-size: 14px;
+  }
+}

@@ -77,10 +77,9 @@
 
       </div>
       
-      <audio controls autoplay loop style="display: none;">
-      <source src="blue.mp3" type="audio/mpeg" />Your browser does not support the audio element.
+      <audio id="bg-music" controls autoplay loop style="display: none;">
+        <source src="blue.mp3" type="audio/mpeg" />Your browser does not support the audio element.
       </audio>
-      <!-- <audio id="bg-music" src="blue.mp3" loop></audio> -->
 
       <h1>Don't go yet! There's more 😉</h1>
 
@@ -135,6 +134,28 @@
               // Disable transitions for smoother movement
               photo.style.transition = "none";
           });
+
+          // Handle touch start (start dragging)
+          photo.addEventListener('touchstart', (e) => {
+              isDragging = true;
+              activePhoto = photo;
+
+              // Bring touched photo to front
+              photos.forEach(p => p.style.zIndex = "1");
+              photo.style.zIndex = "10";
+
+              // Capture initial touch position
+              startX = e.touches[0].clientX;
+              startY = e.touches[0].clientY;
+
+              // Get current position of photo
+              const rect = photo.getBoundingClientRect();
+              currentX = rect.left;
+              currentY = rect.top;
+
+              // Disable transitions for smoother movement
+              photo.style.transition = "none";
+          });
       });
 
       // Handle mouse move (dragging)
@@ -144,6 +165,23 @@
           // Calculate new position
           const deltaX = e.clientX - startX;
           const deltaY = e.clientY - startY;
+          const newX = currentX + deltaX;
+          const newY = currentY + deltaY;
+
+          // Move the photo smoothly
+          requestAnimationFrame(() => {
+              activePhoto.style.transform = `translate(${newX - photoPositions.get(activePhoto).x + photoPositions.get(activePhoto).translateX}px, ${newY - photoPositions.get(activePhoto).y + photoPositions.get(activePhoto).translateY}px) scale(1.05) rotate(2deg)`;
+              activePhoto.style.boxShadow = "10px 20px 30px rgba(0, 0, 0, 0.5)";
+          });
+      });
+
+      // Handle touch move (dragging)
+      document.addEventListener('touchmove', (e) => {
+          if (!isDragging || !activePhoto) return;
+
+          // Calculate new position
+          const deltaX = e.touches[0].clientX - startX;
+          const deltaY = e.touches[0].clientY - startY;
           const newX = currentX + deltaX;
           const newY = currentY + deltaY;
 
@@ -168,6 +206,30 @@
           });
 
           activePhoto = null;
+      });
+
+      // Handle touch end (release)
+      document.addEventListener('touchend', () => {
+          if (!activePhoto) return;
+          isDragging = false;
+
+          // Snap back to original position
+          const originalPos = photoPositions.get(activePhoto);
+          requestAnimationFrame(() => {
+              activePhoto.style.transition = "transform 0.5s ease-out";
+              activePhoto.style.transform = `translate(${originalPos.translateX}px, ${originalPos.translateY}px) rotate(${originalPos.rotation}deg)`;
+              activePhoto.style.boxShadow = "5px 10px 15px rgba(0, 0, 0, 0.3)";
+          });
+
+          activePhoto = null;
+      });
+
+      // Play audio on user interaction for mobile devices
+      document.addEventListener('click', () => {
+          const audio = document.getElementById('bg-music');
+          if (audio.paused) {
+              audio.play();
+          }
       });
     </script>
   </body>

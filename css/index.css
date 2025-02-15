@@ -69,3 +69,50 @@ img {
   border: 2px solid #ff9494;
   box-shadow: 1px 1px 2px #000000, 2px 2px 2px #000000, 3px 3px 2px #000000, 4px 4px 2px #000000, 5px 5px 2px #000000;
 }
+
+/* Media queries for responsiveness */
+@media (max-width: 768px) {
+  #intro-text {
+    font-size: 50px;
+  }
+
+  #valentineQuestion {
+    font-size: 30px;
+  }
+
+  .container {
+    gap: 20px;
+  }
+
+  img {
+    height: 200px;
+  }
+
+  .answerButton {
+    padding: 8px 16px;
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  #intro-text {
+    font-size: 30px;
+  }
+
+  #valentineQuestion {
+    font-size: 20px;
+  }
+
+  .container {
+    gap: 10px;
+  }
+
+  img {
+    height: 150px;
+  }
+
+  .answerButton {
+    padding: 6px 12px;
+    font-size: 14px;
+  }
+}
