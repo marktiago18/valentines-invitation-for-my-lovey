@@ -25,6 +25,7 @@ body {
   background-color: var(--bg-color);
   color: var(--text-color);
 }
+
 #thankyou {
   font-size: 50px;
 }
@@ -72,11 +73,9 @@ body {
   }
 }
 
-
 .rizz {
-  margin-bottom: 10 px;
+  margin-bottom: 10px;
 }
-
 
 .button {
   padding: 10px 20px;
@@ -219,7 +218,7 @@ body {
   transition: none;
 }
 
-@media (max-width: 768px) {
+@media (min-width: 481px) and (max-width: 768px) {
   #thankyou {
     font-size: 50px;
   }
@@ -289,7 +288,7 @@ body {
     justify-content: center;
     flex-direction: column;
     margin-bottom: 0px;
-}
+  }
 
   .book {
     width: 150px;

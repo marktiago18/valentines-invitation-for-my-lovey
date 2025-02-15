@@ -373,7 +373,7 @@ body {
 @keyframes typewriter {
     0% { width: 0; }
     80% { width: 80%; }
-    90% { width: 900%; }
+    90% { width: 90%; }
     100% { width: 0; }
 }
 
@@ -385,11 +385,18 @@ body {
 @media (max-width: 768px) {
     #thankyou {
         font-size: 50px;
+        white-space: normal;
+        animation: typewriter 5s steps(30, end) infinite, blink 0.75s step-end infinite;
     }
 }
 
 @media (max-width: 480px) {
     #thankyou {
-        font-size: 50px;
+        font-size: 30px;
+        white-space: normal;
+        animation: none;
+        border: none;
+        margin-top: 100px;
+        margin-bottom: 300px;
     }
 }

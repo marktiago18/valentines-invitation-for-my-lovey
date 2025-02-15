@@ -46,7 +46,6 @@ img {
   font-size: 50px;
 }
 
-
 .answerButton {
   padding: 10px 20px;
   font-size: 18px;
@@ -71,6 +70,29 @@ img {
 }
 
 /* Media queries for responsiveness */
+@media (min-width: 481px) and (max-width: 1024px) {
+  #intro-text {
+    font-size: 70px;
+  }
+
+  #valentineQuestion {
+    font-size: 40px;
+  }
+
+  .container {
+    gap: 25px;
+  }
+
+  img {
+    height: 300px;
+  }
+
+  .answerButton {
+    padding: 8px 16px;
+    font-size: 16px;
+  }
+}
+
 @media (max-width: 768px) {
   #intro-text {
     font-size: 50px;
